@@ -1,12 +1,14 @@
 package com.akshitbaunthiyal.library.model;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.Data;
+//import lombok.Getter;
+//import lombok.Setter;
+//import lombok.ToString;
 
-@Getter
-@Setter
-@ToString
+@Data
+//@Getter
+//@Setter
+//@ToString
 public class AkshitBaunthiyal {
 
     private String courseName;
