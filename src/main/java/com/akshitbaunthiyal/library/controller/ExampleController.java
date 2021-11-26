@@ -21,6 +21,11 @@ public class ExampleController {
         return akshitBaunthiyal;
     }
 
+    @GetMapping("/helloWorld")
+    public String helloWorld() {
+        return "Hello world!";
+    }
+
     @PostMapping("/customInfo")
     public AkshitBaunthiyal customInfo(String courseName, String courseType, String instructorName) {
         AkshitBaunthiyal akshitBaunthiyal = new AkshitBaunthiyal();
