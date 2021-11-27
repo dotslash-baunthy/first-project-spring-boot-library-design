@@ -1,8 +1,7 @@
-package com.akshitbaunthiyal.library.serviceImpl;
+package com.akshitbaunthiyal.library.service;
 
 import com.akshitbaunthiyal.library.model.Course;
 import com.akshitbaunthiyal.library.model.FullName;
-import com.akshitbaunthiyal.library.service.ExampleService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
