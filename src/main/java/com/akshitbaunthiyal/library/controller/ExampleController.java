@@ -14,11 +14,11 @@ public class ExampleController {
     @GetMapping("/info")
 //    @ResponseBody
     public Course get() {
-        Course course = new Course();
-        course.setCourseName("Spring boot and Java");
-        course.setCourseType("Information technology");
-        course.setInstructorName("Samarth Narula");
-        return course;
+        Course noArgsConstructor = new Course();
+        noArgsConstructor.setCourseName("Spring boot and Java");
+        noArgsConstructor.setCourseType("Information technology");
+        noArgsConstructor.setInstructorName("Samarth Narula");
+        return noArgsConstructor;
     }
 
     @GetMapping("/helloWorld")
@@ -28,6 +28,7 @@ public class ExampleController {
 
     @PostMapping("/customInfo")
     public Course customInfo(String courseName, String courseType, String instructorName) {
-        return new Course(courseName, courseType, instructorName);
+        Course allArgsConstructor = new Course(courseName, courseType, instructorName);
+        return allArgsConstructor;
     }
 }
