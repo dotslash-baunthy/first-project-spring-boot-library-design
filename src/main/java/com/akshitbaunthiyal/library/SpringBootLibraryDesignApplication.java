@@ -15,7 +15,12 @@ public class SpringBootLibraryDesignApplication implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 //        Runs before main()
+//        All args constructor
         Course course = new Course("Designing microservices with Spring Boot", "Information technology", "Samarth Narula");
-        System.out.println("Course - " + course);
+        System.out.println("All args constructor - " + course);
+
+//        Telescoping constructor pattern
+        Course teleScopeDesignPattern = new Course("Learn creational design pattern", "Information technology");
+        System.out.println("Telescoping constructor - " + teleScopeDesignPattern);
     }
 }
