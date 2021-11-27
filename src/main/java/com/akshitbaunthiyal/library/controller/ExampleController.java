@@ -1,6 +1,6 @@
 package com.akshitbaunthiyal.library.controller;
 
-import com.akshitbaunthiyal.library.model.AkshitBaunthiyal;
+import com.akshitbaunthiyal.library.model.Course;
 //import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 //import org.springframework.web.bind.annotation.ResponseBody;
@@ -13,12 +13,12 @@ public class ExampleController {
 
     @GetMapping("/info")
 //    @ResponseBody
-    public AkshitBaunthiyal get() {
-        AkshitBaunthiyal akshitBaunthiyal = new AkshitBaunthiyal();
-        akshitBaunthiyal.setCourseName("Learn controllers in Spring Boot");
-        akshitBaunthiyal.setCourseType("Information technology");
-        akshitBaunthiyal.setInstructorName("Samarth Narula");
-        return akshitBaunthiyal;
+    public Course get() {
+        Course course = new Course();
+        course.setCourseName("Spring boot and Java");
+        course.setCourseType("Information technology");
+        course.setInstructorName("Samarth Narula");
+        return course;
     }
 
     @GetMapping("/helloWorld")
@@ -27,11 +27,7 @@ public class ExampleController {
     }
 
     @PostMapping("/customInfo")
-    public AkshitBaunthiyal customInfo(String courseName, String courseType, String instructorName) {
-        AkshitBaunthiyal akshitBaunthiyal = new AkshitBaunthiyal();
-        akshitBaunthiyal.setCourseName(courseName);
-        akshitBaunthiyal.setCourseType(courseType);
-        akshitBaunthiyal.setInstructorName(instructorName);
-        return akshitBaunthiyal;
+    public Course customInfo(String courseName, String courseType, String instructorName) {
+        return new Course(courseName, courseType, instructorName);
     }
 }
