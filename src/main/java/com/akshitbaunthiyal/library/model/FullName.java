@@ -12,4 +12,5 @@ import lombok.NoArgsConstructor;
 public class FullName {
     private String firstName;
     private String lastName;
+    private int idNo;
 }
