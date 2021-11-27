@@ -2,6 +2,7 @@ package com.akshitbaunthiyal.library.serviceImpl;
 
 import com.akshitbaunthiyal.library.model.Course;
 import com.akshitbaunthiyal.library.model.FullName;
+import com.akshitbaunthiyal.library.service.ExampleService;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -12,7 +13,7 @@ public class ExampleServiceImpl implements ExampleService {
         Course noArgsConstructor = new Course();
         noArgsConstructor.setCourseName("Spring boot and Java");
         noArgsConstructor.setCourseType("Information technology");
-        noArgsConstructor.setInstructorName(new FullName("Samarth", "Narula", 123));
+        noArgsConstructor.setInstructorName(FullName.builder().firstName("Samarth").lastName("Narula").idNo(123).build());
         return noArgsConstructor;
     }
 
