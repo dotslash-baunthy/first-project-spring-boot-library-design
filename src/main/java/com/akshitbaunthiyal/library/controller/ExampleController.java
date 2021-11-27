@@ -3,7 +3,7 @@ package com.akshitbaunthiyal.library.controller;
 import com.akshitbaunthiyal.library.model.Course;
 //import org.springframework.stereotype.Controller;
 import com.akshitbaunthiyal.library.model.FullName;
-import com.akshitbaunthiyal.library.serviceImpl.ExampleServiceImpl;
+import com.akshitbaunthiyal.library.service.ExampleServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 //import org.springframework.web.bind.annotation.ResponseBody;
@@ -19,17 +19,17 @@ public class ExampleController {
 
     @GetMapping("/info")
 //    @ResponseBody
-    public Course get() {
+    public Course getInfo() {
         return exampleServiceImpl.get();
     }
 
-    @GetMapping("/helloWorld")
+    @GetMapping("/helloworld")
     public String helloWorld() {
         return "Hello world!";
     }
 
-    @PostMapping("/customInfo")
-    public Course customInfo(String courseName, String courseType, FullName fullName) {
+    @PostMapping("/custominfo")
+    public Course postInfo(String courseName, String courseType, FullName fullName) {
         return exampleServiceImpl.customInfo(courseName, courseType, fullName);
     }
 }
