@@ -13,8 +13,8 @@ public class Course {
 
     private String courseName;
     private String courseType;
-    private String instructorName;
-
+//    private String instructorName;
+    private FullName instructorName;
     public Course(String courseName) {
         this.courseName = courseName;
     }
