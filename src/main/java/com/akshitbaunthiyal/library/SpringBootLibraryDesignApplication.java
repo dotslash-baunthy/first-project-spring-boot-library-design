@@ -22,5 +22,12 @@ public class SpringBootLibraryDesignApplication implements CommandLineRunner {
 //        Telescoping constructor pattern
         Course teleScopeDesignPattern = new Course("Learn creational design pattern", "Information technology");
         System.out.println("Telescoping constructor - " + teleScopeDesignPattern);
+
+//        Builder design pattern
+        Course builderDesignPattern = Course.builder().courseName("Spring builder")
+                .courseType("I T")
+                .instructorName("Samarth Narula")
+                .build();
+        System.out.println("Builder constructor - " + builderDesignPattern);
     }
 }
