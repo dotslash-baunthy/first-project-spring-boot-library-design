@@ -8,6 +8,7 @@ import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.regex.Pattern;
 
 @Service
 public class LibraryReadServiceImpl {
@@ -18,13 +19,15 @@ public class LibraryReadServiceImpl {
         return readRepository.findAll();
     }
 
-    //    public List<Library> getAllLibrariesWithNoBooks() {
     public List<Library> getAllLibrariesWithNoBooks() {
         Library libraryWithNoBooks = new Library();
         libraryWithNoBooks.setCommaSeparatedBookNames("");
         ExampleMatcher considerOnlyCommaSeparatedBookNames = ExampleMatcher.matching()
                 .withMatcher("commaSeparatedBookNames", ExampleMatcher.GenericPropertyMatchers.exact()).withIgnorePaths("id", "name");
-        Example<Library> libraryExample = Example.of(libraryWithNoBooks, considerOnlyCommaSeparatedBookNames);
-        return readRepository.findAll(libraryExample);
+        Example<Library> exampleLibraryWithNoBook = Example.of(libraryWithNoBooks, considerOnlyCommaSeparatedBookNames);
+        return readRepository.findAll(exampleLibraryWithNoBook);
     }
+
+//    Add noEmptyLibrary() function
+
 }
