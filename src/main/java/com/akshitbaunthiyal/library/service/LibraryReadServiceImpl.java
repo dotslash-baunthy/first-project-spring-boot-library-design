@@ -3,12 +3,10 @@ package com.akshitbaunthiyal.library.service;
 import com.akshitbaunthiyal.library.entity.Library;
 import com.akshitbaunthiyal.library.repository.LibraryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Example;
-import org.springframework.data.domain.ExampleMatcher;
+import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.regex.Pattern;
 
 @Service
 public class LibraryReadServiceImpl {
@@ -30,4 +28,22 @@ public class LibraryReadServiceImpl {
 
 //    Add noEmptyLibrary() function
 
+    public Page<Library> getLibrariesPaged(int pageNumber, int pageSize) {
+        Pageable recordsPage = PageRequest.of(pageNumber, pageSize);
+        return readRepository.findAll(recordsPage);
+    }
+
+    public List<Library> getInsertWithIdInOrder(Sort.Direction direction) {
+        return readRepository.findAll(Sort.by(Sort.Direction.DESC, "id"));
+    }
+
+    public Page<Library> getLibrariesPagedAndSortedByNameAndWithTheseBooks(String commaSeparatedBookNames) {
+        Library libraryWithGivenBooks = new Library();
+        libraryWithGivenBooks.setCommaSeparatedBookNames(commaSeparatedBookNames);
+        ExampleMatcher considerOnlyTheseBooks = ExampleMatcher.matching()
+                .withMatcher("commaSeparatedBookNames", ExampleMatcher.GenericPropertyMatchers.exact()).withIgnorePaths("id", "name");
+        Example<Library> exampleLibraryWithGivenBook = Example.of(libraryWithGivenBooks, considerOnlyTheseBooks);
+        Pageable sortedLibraries = PageRequest.of(0, 2, Sort.by("name"));
+        return readRepository.findAll(exampleLibraryWithGivenBook, sortedLibraries);
+    }
 }
