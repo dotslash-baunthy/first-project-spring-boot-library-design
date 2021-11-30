@@ -6,3 +6,5 @@ INSERT INTO LIBRARY
 VALUES (3, '', 'Blank Library 1');
 INSERT INTO LIBRARY
 VALUES (4, '', 'Blank Library 2');
+INSERT INTO LIBRARY
+VALUES (5, 'Momma Ka purse, Doodh Ki Vyatha: Chai banoon ya bachde ki khurakh, Teen Pair Vaala Kutta', 'Non-fiction');
