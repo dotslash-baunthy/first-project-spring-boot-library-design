@@ -33,7 +33,7 @@ public class LibraryReadServiceImpl {
         return readRepository.findAll(recordsPage);
     }
 
-    public List<Library> getInsertWithIdInOrder(Sort.Direction direction) {
+    public List<Library> getInsertWithIdInOrder() {
         return readRepository.findAll(Sort.by(Sort.Direction.DESC, "id"));
     }
 
