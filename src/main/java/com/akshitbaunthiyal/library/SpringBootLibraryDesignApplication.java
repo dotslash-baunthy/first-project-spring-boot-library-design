@@ -10,7 +10,7 @@ public class SpringBootLibraryDesignApplication implements CommandLineRunner {
 
     public static void main(String[] args) {
         SpringApplication.run(SpringBootLibraryDesignApplication.class, args);
-//        System.out.println("Hello spring boot!");
+        System.out.println("Hello spring boot!");
     }
 
     @Override
