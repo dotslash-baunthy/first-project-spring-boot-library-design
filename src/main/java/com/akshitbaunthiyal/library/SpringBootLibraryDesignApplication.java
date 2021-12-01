@@ -7,6 +7,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Collectors;
 
 @SpringBootApplication
@@ -30,5 +32,10 @@ public class SpringBootLibraryDesignApplication implements CommandLineRunner {
         log.info("Fetch inserted records in set order -> {}" + libraryReadService.getInsertWithIdInOrder());
         log.info("--------------------");
         log.info("Fetch libraries fetched, sorted and given books -> {}" + libraryReadService.getLibrariesPagedAndSortedByNameAndWithTheseBooks("").get().collect(Collectors.toList()));
+        log.info("--------------------");
+        List<Long> ids = new ArrayList<Long>();
+        ids.add(1l);
+        ids.add(2l);
+        log.info("Fetch libraries by given IDs -> {}"+libraryReadService.getLibrariesById(ids));
     }
 }

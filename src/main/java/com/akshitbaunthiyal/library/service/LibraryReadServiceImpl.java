@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -45,5 +46,9 @@ public class LibraryReadServiceImpl {
         Example<Library> exampleLibraryWithGivenBook = Example.of(libraryWithGivenBooks, considerOnlyTheseBooks);
         Pageable sortedLibraries = PageRequest.of(0, 2, Sort.by("name"));
         return readRepository.findAll(exampleLibraryWithGivenBook, sortedLibraries);
+    }
+
+    public List<Library> getLibrariesById(List<Long> ids) {
+        return readRepository.findAllById(ids);
     }
 }
