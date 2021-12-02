@@ -1,6 +1,7 @@
 package com.akshitbaunthiyal.library;
 
 import com.akshitbaunthiyal.library.entity.Library;
+import com.akshitbaunthiyal.library.service.LibraryCreateServiceImpl;
 import com.akshitbaunthiyal.library.service.LibraryReadServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,9 @@ public class SpringBootLibraryDesignApplication implements CommandLineRunner {
     @Autowired
     LibraryReadServiceImpl libraryReadService;
 
+    @Autowired
+    LibraryCreateServiceImpl libraryCreateService;
+
     public static void main(String[] args) {
         SpringApplication.run(SpringBootLibraryDesignApplication.class, args);
     }
@@ -29,6 +33,14 @@ public class SpringBootLibraryDesignApplication implements CommandLineRunner {
     public void run(String... args) throws Exception {
 //        Runs before main()
 //        readServiceImplMethodsExecution();
+        createServiceImplMethodsExecution();
+    }
+
+    public void createServiceImplMethodsExecution() {
+        log.info("--------------------");
+        log.info("Persist a single library -> {}", libraryCreateService.addSingleLibrary(Library.builder()
+                .commaSeparatedBookNames("Some book1, Some book2").name("Some books").build()));
+        log.info("--------------------");
     }
 
     private void readServiceImplMethodsExecution() {
@@ -53,14 +65,14 @@ public class SpringBootLibraryDesignApplication implements CommandLineRunner {
         log.info("--------------------");
 
         log.info("--------------------");
-        List<Long> ids = new ArrayList<Long>();
-        ids.add(1l);
-        ids.add(2l);
+        List<Long> ids = new ArrayList<>();
+        ids.add(1L);
+        ids.add(2L);
         log.info("Fetch libraries by given IDs -> {}", libraryReadService.getLibrariesById(ids));
         log.info("--------------------");
 
         log.info("--------------------");
-        Optional<Library> optionalLibrary = libraryReadService.getLibraryByID(1l);
+        Optional<Library> optionalLibrary = libraryReadService.getLibraryByID(1L);
         if (optionalLibrary.isPresent()) {
             log.info("Fetch library by ID if exists -> {}", optionalLibrary);
         } else {
@@ -70,10 +82,9 @@ public class SpringBootLibraryDesignApplication implements CommandLineRunner {
 
         log.info("--------------------");
         optionalLibrary = libraryReadService.getLibraryWithTheseBooks("Momma Ka purse, Doodh Ki Vyatha: Chai banoon ya bachde ki khurakh, Teen Pair Vaala Kutta");
-        if(optionalLibrary.isPresent()) {
+        if (optionalLibrary.isPresent()) {
             log.info("Fetch library with given books -> {}", optionalLibrary);
-        }
-        else {
+        } else {
             log.info("Library with given book(s) does not exist");
         }
         log.info("--------------------");
