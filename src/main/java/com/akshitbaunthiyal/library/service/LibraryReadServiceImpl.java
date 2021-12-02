@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class LibraryReadServiceImpl {
@@ -51,4 +51,18 @@ public class LibraryReadServiceImpl {
     public List<Library> getLibrariesById(List<Long> ids) {
         return readRepository.findAllById(ids);
     }
+
+    public Optional<Library> getLibraryByID(Long id) {
+        return readRepository.findById(id);
+    }
+
+    public Optional getLibraryWithTheseBooks(String commaSeparatedBookNames) {
+        Library library = new Library();
+        library.setCommaSeparatedBookNames(commaSeparatedBookNames);
+        ExampleMatcher exampleMatcher = ExampleMatcher.matching()
+                .withMatcher("commaSeparatedBookNames", ExampleMatcher.GenericPropertyMatchers.exact()).withIgnorePaths("id","name");
+        Example example = Example.of(library, exampleMatcher);
+        return readRepository.findOne(example);
+    }
+
 }
