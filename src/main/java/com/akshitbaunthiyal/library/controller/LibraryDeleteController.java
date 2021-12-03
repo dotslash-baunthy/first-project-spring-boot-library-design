@@ -2,9 +2,9 @@ package com.akshitbaunthiyal.library.controller;
 
 import com.akshitbaunthiyal.library.service.LibraryDeleteService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/delete")
@@ -17,5 +17,10 @@ public class LibraryDeleteController {
     @DeleteMapping("/library")
     public void deleteLibraryById(Long id) {
         libraryDeleteService.deleteById(id);
+    }
+
+    @PostMapping("/libraries")
+    public void deleteAllById(@RequestBody List<Long> libraries) {
+        libraryDeleteService.deleteAllById(libraries);
     }
 }
