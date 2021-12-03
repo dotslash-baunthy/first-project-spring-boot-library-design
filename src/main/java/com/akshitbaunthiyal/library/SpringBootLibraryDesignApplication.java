@@ -40,11 +40,6 @@ public class SpringBootLibraryDesignApplication implements CommandLineRunner {
 
     public void run(String... args) throws Exception {
 //        Runs before main()
-//        readServiceImplMethodsExecution();
-//        createServiceImplMethodsExecution();
-//        existServiceImplMethodsExecution();
-        deleteServiceImplMethodsExecution();
-
     }
 
     public void deleteServiceImplMethodsExecution() {
@@ -73,7 +68,7 @@ public class SpringBootLibraryDesignApplication implements CommandLineRunner {
 
     public void createServiceImplMethodsExecution() {
         log.info("--------------------");
-        log.info("Persist a single library -> {}", libraryCreateService.addSingleLibrary(Library.builder()
+        log.info("Persist a single library -> {}", libraryCreateService.addLibrary(Library.builder()
                 .commaSeparatedBookNames("Some book1, Some book2").name("Some books").build()));
         log.info("--------------------");
     }
