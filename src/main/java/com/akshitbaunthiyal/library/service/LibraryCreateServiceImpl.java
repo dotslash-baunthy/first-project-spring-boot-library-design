@@ -5,14 +5,22 @@ import com.akshitbaunthiyal.library.repository.LibraryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class LibraryCreateServiceImpl implements LibraryCreateService {
     @Autowired
     LibraryRepository createRepository;
 
-    public String addSingleLibrary(Library library) {
+    public String addLibrary(Library library) {
         createRepository.save(library);
         createRepository.flush();
         return "Library saved";
+    }
+
+    @Override
+    public String addLibraries(List<Library> libraries) {
+        createRepository.saveAllAndFlush(libraries);
+        return "Libraries saved";
     }
 }
