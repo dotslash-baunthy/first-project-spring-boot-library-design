@@ -2,6 +2,8 @@ package com.akshitbaunthiyal.library;
 
 import com.akshitbaunthiyal.library.entity.Library;
 import com.akshitbaunthiyal.library.service.LibraryCreateServiceImpl;
+import com.akshitbaunthiyal.library.service.LibraryDeleteService;
+import com.akshitbaunthiyal.library.service.LibraryExistsService;
 import com.akshitbaunthiyal.library.service.LibraryReadServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +26,12 @@ public class SpringBootLibraryDesignApplication implements CommandLineRunner {
     @Autowired
     LibraryCreateServiceImpl libraryCreateService;
 
+    @Autowired
+    LibraryExistsService libraryExistsService;
+
+    @Autowired
+    LibraryDeleteService libraryDeleteService;
+
     public static void main(String[] args) {
         SpringApplication.run(SpringBootLibraryDesignApplication.class, args);
     }
@@ -33,7 +41,34 @@ public class SpringBootLibraryDesignApplication implements CommandLineRunner {
     public void run(String... args) throws Exception {
 //        Runs before main()
 //        readServiceImplMethodsExecution();
-        createServiceImplMethodsExecution();
+//        createServiceImplMethodsExecution();
+//        existServiceImplMethodsExecution();
+        deleteServiceImplMethodsExecution();
+
+    }
+
+    public void deleteServiceImplMethodsExecution() {
+        log.info("--------------------");
+        log.info(libraryDeleteService.deleteById(1L));
+        log.info("--------------------");
+    }
+
+    public void existServiceImplMethodsExecution() {
+        log.info("--------------------");
+        if (libraryExistsService.checkLibraryExistsById(1111L)) {
+            log.info("Library with given ID is -> {}", libraryReadService.getLibraryByID(1111L));
+        } else {
+            log.info("Library with given ID does not exist");
+        }
+        log.info("--------------------");
+        log.info("--------------------");
+        if(libraryExistsService.checkIfLibraryExistsByExample("Blank Library 1")) {
+            log.info("Library with given name is -> {}",libraryReadService.getLibraryByName("Blank Library 1"));
+        }
+        else {
+            log.info("Library with given name does not exist");
+        }
+        log.info("--------------------");
     }
 
     public void createServiceImplMethodsExecution() {
