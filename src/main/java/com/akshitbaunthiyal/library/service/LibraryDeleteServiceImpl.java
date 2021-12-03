@@ -1,8 +1,11 @@
 package com.akshitbaunthiyal.library.service;
 
+import com.akshitbaunthiyal.library.entity.Library;
 import com.akshitbaunthiyal.library.repository.LibraryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class LibraryDeleteServiceImpl implements LibraryDeleteService {
@@ -20,5 +23,11 @@ public class LibraryDeleteServiceImpl implements LibraryDeleteService {
     public String deleteAll() {
         libraryRepository.deleteAll();
         return "Prune complete";
+    }
+
+    @Override
+    public String deleteAllById(List<Long> libraries) {
+        libraryRepository.deleteAllById(libraries);
+        return "Libraries deleted";
     }
 }
