@@ -10,7 +10,7 @@ import java.util.List;
 @Service
 public class LibraryCreateServiceImpl implements LibraryCreateService {
     @Autowired
-    LibraryRepository createRepository;
+    private LibraryRepository createRepository;
 
     public String addLibrary(Library library) {
         createRepository.save(library);

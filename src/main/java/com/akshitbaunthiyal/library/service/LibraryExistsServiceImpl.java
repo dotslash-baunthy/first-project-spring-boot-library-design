@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 public class LibraryExistsServiceImpl implements LibraryExistsService {
 
     @Autowired
-    LibraryRepository libraryRepository;
+    private LibraryRepository libraryRepository;
 
     @Override
     public boolean checkLibraryExistsById(Long id) {

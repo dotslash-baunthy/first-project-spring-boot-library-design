@@ -11,7 +11,7 @@ import java.util.List;
 public class LibraryDeleteServiceImpl implements LibraryDeleteService {
 
     @Autowired
-    LibraryRepository libraryRepository;
+    private LibraryRepository libraryRepository;
 
     @Override
     public String deleteById(Long id) {

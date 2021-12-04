@@ -12,7 +12,7 @@ import java.util.Optional;
 @Service
 public class LibraryReadServiceImpl implements LibraryReadService {
     @Autowired
-    LibraryRepository readRepository;
+    private LibraryRepository readRepository;
 
     @Override
     public List<Library> getAllLibrary() {
