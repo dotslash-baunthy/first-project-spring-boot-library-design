@@ -5,10 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 @Data
@@ -16,11 +13,18 @@ import javax.persistence.Id;
 @NoArgsConstructor
 @Builder
 
+@Table(name="library")
 public class Library {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
+
+    @Column(name = "name")
     private String name;
+
+    @Column(name = "comma_separated_book_names")
     private String commaSeparatedBookNames;
+
 }
