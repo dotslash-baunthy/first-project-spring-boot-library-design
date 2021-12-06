@@ -4,7 +4,6 @@ import com.akshitbaunthiyal.library.entity.Library;
 import com.akshitbaunthiyal.library.service.LibraryReadService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -25,24 +24,33 @@ public class LibraryReadController {
     }
 
     @GetMapping("/library/")
-    public Optional<Library> getLibraryById(Long id, String name) {
+    public Optional<Object> getLibrary(Long id, String name) {
         if (id != null && name == null) {
-            return libraryReadService.getLibraryByID(id);
-        } else if (name != null && id == null) {
-            return libraryReadService.getLibraryByName(name);
+            return Optional.ofNullable(libraryReadService.getLibraryByID(id));
+        } else if (id == null && name != null) {
+            return Optional.ofNullable(libraryReadService.getLibraryByName(name));
         } else if (id != null && name != null) {
             Optional<Library> libraryById = libraryReadService.getLibraryByID(id);
-            if (libraryById.isPresent()) {
+            Optional<Library> libraryByName = libraryReadService.getLibraryByName(name);
+//            Check if libraries fetched via ID and name are present
+            if (libraryById.isPresent() && libraryByName.isPresent()) {
+//                Check if libraries fetched via ID and name match
                 if (libraryById.get().getName() == libraryReadService.getLibraryByName(name).get().getName()) {
-                    return libraryById;
-                } else {
-                    return null;
+                    return Optional.of(libraryById);
                 }
-            } else {
-                return null;
+//                If libraries by ID and name don't match
+                else {
+                    return Optional.of("Not found");
+                }
             }
-        } else {
-            return null;
+//            If libraries by ID and name are not present
+            else {
+                return Optional.of("Not found");
+            }
+        }
+//        If both ID and name are null
+        else {
+            return Optional.of("Not found");
         }
     }
 
