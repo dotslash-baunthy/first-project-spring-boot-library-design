@@ -18,11 +18,6 @@ public class LibraryReadController {
     @Autowired
     LibraryReadService libraryReadService;
 
-    @GetMapping("/libraries")
-    public List<Library> getAllLibraries() {
-        return libraryReadService.getAllLibrary();
-    }
-
     @GetMapping("/library/")
     public Optional<Object> getLibrary(Long id, String name) {
         if (id != null && name == null) {
@@ -35,7 +30,7 @@ public class LibraryReadController {
 //            Check if libraries fetched via ID and name are present
             if (libraryById.isPresent() && libraryByName.isPresent()) {
 //                Check if libraries fetched via ID and name match
-                if (libraryById.get().getName() == libraryReadService.getLibraryByName(name).get().getName()) {
+                if (libraryById.get().getName().equals(libraryByName.get().getName())) {
                     return Optional.of(libraryById);
                 }
 //                If libraries by ID and name don't match
@@ -50,7 +45,7 @@ public class LibraryReadController {
         }
 //        If both ID and name are null
         else {
-            return Optional.of("Not found");
+            return Optional.of(libraryReadService.getAllLibrary());
         }
     }
 
