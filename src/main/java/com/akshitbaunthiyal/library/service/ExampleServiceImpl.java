@@ -2,16 +2,13 @@ package com.akshitbaunthiyal.library.service;
 
 import com.akshitbaunthiyal.library.model.Course;
 import com.akshitbaunthiyal.library.model.FullName;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 @Service
-@Slf4j
 public class ExampleServiceImpl implements ExampleService {
 
     @Override
     public Course get() {
-        log.info("Inside get() method");
         Course noArgsConstructor = new Course();
         noArgsConstructor.setCourseName("Spring boot and Java");
         noArgsConstructor.setCourseType("Information technology");
@@ -21,7 +18,6 @@ public class ExampleServiceImpl implements ExampleService {
 
     @Override
     public Course customInfo(String courseName, String courseType, FullName fullName) {
-        log.info("Inside customInfo() method");
         Course allArgsConstructor = new Course(courseName, courseType, fullName);
         return allArgsConstructor;
     }
