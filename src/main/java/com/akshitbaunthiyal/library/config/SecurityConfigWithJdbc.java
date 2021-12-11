@@ -15,7 +15,7 @@ import javax.sql.DataSource;
 
 @EnableWebSecurity
 public class SecurityConfigWithJdbc extends WebSecurityConfigurerAdapter {
-    
+
     DataSource dataSource;
 
     @Autowired
@@ -45,6 +45,7 @@ public class SecurityConfigWithJdbc extends WebSecurityConfigurerAdapter {
         http.csrf().disable().authorizeRequests()
                 .antMatchers("/create/**", "/delete/**").hasRole("LIBRARY_OWNER")
                 .antMatchers("/exist/**", "/read/**").hasAnyRole("LIBRARY_OWNER", "LIBRARY_CLERK")
-                .antMatchers("/").permitAll().and().formLogin();
+                .antMatchers("/").permitAll()
+                .and().formLogin();
     }
 }
